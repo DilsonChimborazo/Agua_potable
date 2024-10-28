@@ -1,52 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState, useEffect } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Filtro = () => {
-    const [valorTurbidez, setValorTurbidez] = useState('');
-    const [valorNitratos, setValorNitratos] = useState('');
-    const [valorFluoruros, setValorFluoruros] = useState('');
-    const [valorArsenico, setValorArsenico] = useState('');
-    const [valorMercurio, setValorMercurio] = useState('');
-    const [valorPlomo, setValorPlomo] = useState('');
-    const [prueba, setPrueba] = useState([]);
+    const [valorTurbidez, setValorTurbidez] = useState('')
+    const [valorNitratos, setValorNitratos] = useState('')
+    const [valorFluoruros, setValorFluoruros] = useState('')
+    const [valorArsenico, setValorArsenico] = useState('')
+    const [valorMercurio, setValorMercurio] = useState('')
+    const [valorPlomo, setValorPlomo] = useState('')
+    const [prueba, setPrueba] = useState([])
 
     useEffect(() => {
-        const pruebaGuardada = JSON.parse(localStorage.getItem('Prueba')) || [];
-        setPrueba(pruebaGuardada);
-    }, []);
+        const pruebaGuardada = JSON.parse(localStorage.getItem('Prueba')) || []
+        setPrueba(pruebaGuardada)
+    }, [])
 
     useEffect(() => {
-        localStorage.setItem('Prueba', JSON.stringify(prueba));
-    }, [prueba]);
+        localStorage.setItem('Prueba', JSON.stringify(prueba))
+    }, [prueba])
 
-    const idealRanges = {
+    const rango = {
         turbidez: { max: 1 },
         nitratos: { max: 10 },
         fluoruros: { max: 1.5 },
         arsenico: { max: 0.01 },
         mercurio: { max: 0.006 },
         plomo: { max: 0.01 },
-    };
+    }
 
     const datos = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         const proceso = [
-            { elemento: 'Turbidez', valorIngresado: valorTurbidez, valorFiltrado: Math.min(valorTurbidez, idealRanges.turbidez.max), fueraDeRango: valorTurbidez > idealRanges.turbidez.max },
-            { elemento: 'Nitratos', valorIngresado: valorNitratos, valorFiltrado: Math.min(valorNitratos, idealRanges.nitratos.max), fueraDeRango: valorNitratos > idealRanges.nitratos.max },
-            { elemento: 'Fluoruros', valorIngresado: valorFluoruros, valorFiltrado: Math.min(valorFluoruros, idealRanges.fluoruros.max), fueraDeRango: valorFluoruros > idealRanges.fluoruros.max },
-            { elemento: 'Arsénico', valorIngresado: valorArsenico, valorFiltrado: Math.min(valorArsenico, idealRanges.arsenico.max), fueraDeRango: valorArsenico > idealRanges.arsenico.max },
-            { elemento: 'Mercurio', valorIngresado: valorMercurio, valorFiltrado: Math.min(valorMercurio, idealRanges.mercurio.max), fueraDeRango: valorMercurio > idealRanges.mercurio.max },
-            { elemento: 'Plomo', valorIngresado: valorPlomo, valorFiltrado: Math.min(valorPlomo, idealRanges.plomo.max), fueraDeRango: valorPlomo > idealRanges.plomo.max },
-        ];
+            { elemento: 'Turbidez', valorIngresado: valorTurbidez, valorFiltrado: Math.min(valorTurbidez, rango.turbidez.max), fueraDeRango: valorTurbidez > rango.turbidez.max },
+            { elemento: 'Nitratos', valorIngresado: valorNitratos, valorFiltrado: Math.min(valorNitratos, rango.nitratos.max), fueraDeRango: valorNitratos > rango.nitratos.max },
+            { elemento: 'Fluoruros', valorIngresado: valorFluoruros, valorFiltrado: Math.min(valorFluoruros, rango.fluoruros.max), fueraDeRango: valorFluoruros > rango.fluoruros.max },
+            { elemento: 'Arsénico', valorIngresado: valorArsenico, valorFiltrado: Math.min(valorArsenico, rango.arsenico.max), fueraDeRango: valorArsenico > rango.arsenico.max },
+            { elemento: 'Mercurio', valorIngresado: valorMercurio, valorFiltrado: Math.min(valorMercurio, rango.mercurio.max), fueraDeRango: valorMercurio > rango.mercurio.max },
+            { elemento: 'Plomo', valorIngresado: valorPlomo, valorFiltrado: Math.min(valorPlomo, rango.plomo.max), fueraDeRango: valorPlomo > rango.plomo.max },
+        ]
 
-        setPrueba((Filtros) => [...Filtros, proceso].slice(-5));
-        setValorTurbidez('');
-        setValorNitratos('');
-        setValorFluoruros('');
-        setValorArsenico('');
-        setValorMercurio('');
-        setValorPlomo('');
+        setPrueba((Filtros) => [...Filtros, proceso].slice(-5))
+        setValorTurbidez('')
+        setValorNitratos('')
+        setValorFluoruros('')
+        setValorArsenico('')
+        setValorMercurio('')
+        setValorPlomo('')
     };
 
     return (
@@ -134,7 +134,7 @@ const Filtro = () => {
                 </tbody>
             </table>
         </div>
-    );
-};
+    )
+}
 
 export default Filtro;
