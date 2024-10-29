@@ -108,20 +108,20 @@ const Filtro = () => {
                     {prueba.length > 0 ? (
                         prueba.map((test, i) => (
                             <React.Fragment key={i}>
-                                {test.map((element, j) => (
+                                {test.map((elemento, j) => (
                                     <tr key={j}>
-                                        <td>{element.elemento}</td>
-                                        <td>{element.valorIngresado}</td>
-                                        <td>{element.valorFiltrado}</td>
-                                        <td>{element.fueraDeRango ? 'No está en el rango ideal' : 'Está en el rango ideal'}</td>
+                                        <td>{elemento.elemento}</td>
+                                        <td>{elemento.valorIngresado}</td>
+                                        <td>{elemento.valorFiltrado}</td>
+                                        <td>{elemento.fueraDeRango ? 'No está en el rango ideal' : 'Está en el rango ideal'}</td>
                                     </tr>
                                 ))}
                                 <tr>
                                     <td colSpan="3" className="text-center font-weight-bold">
                                         Resultado:
                                     </td>
-                                    <td className='bg-secondary text-white'>
-                                        {test.some((el) => el.fueraDeRango) ? 'No Potable' : 'Potable'}
+                                    <td className='bg-secondary text-white fs-5'>
+                                        <b>{test.some((el) => el.fueraDeRango) ? 'No Potable' : 'Potable'}</b>
                                     </td>
                                 </tr>
                             </React.Fragment>
