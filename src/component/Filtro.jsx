@@ -60,35 +60,29 @@ const Filtro = () => {
                             type="number"
                             value={valorTurbidez}
                             onChange={(e) => setValorTurbidez(parseFloat(e.target.value))}
-                            step="0.001"
                             placeholder="Ingrese el valor"
                             className="form-control"
                         />
                     </div>
                     <div className="col-md-6">
                         <label><b>Nitratos</b>:</label>
-                        <input type="number" value={valorNitratos} onChange={(e) => setValorNitratos(parseFloat(e.target.value))} step="0.001" placeholder="Ingrese el valor" className="form-control"
-                        />
+                        <input type="number" value={valorNitratos} onChange={(e) => setValorNitratos(parseFloat(e.target.value))} placeholder="Ingrese el valor" className="form-control"/>
                     </div>
                     <div className="col-md-6 mt-3">
                         <label><b>Fluoruros</b>:</label>
-                        <input type="number" value={valorFluoruros} onChange={(e) => setValorFluoruros(parseFloat(e.target.value))} step="0.001" placeholder="Ingrese el valor" className="form-control"
-                        />
+                        <input type="number" value={valorFluoruros} onChange={(e) => setValorFluoruros(parseFloat(e.target.value))} placeholder="Ingrese el valor" className="form-control"/>
                     </div>
                     <div className="col-md-6 mt-3">
                         <label><b>Arsénico</b>:</label>
-                        <input type="number" value={valorArsenico} onChange={(e) => setValorArsenico(parseFloat(e.target.value))} step="0.001" placeholder="Ingrese el valor" className="form-control"
-                        />
+                        <input type="number" value={valorArsenico} onChange={(e) => setValorArsenico(parseFloat(e.target.value))} placeholder="Ingrese el valor" className="form-control"/>
                     </div>
                     <div className="col-md-6 mt-3">
                         <label><b>Mercurio</b>:</label>
-                        <input type="number" value={valorMercurio} onChange={(e) => setValorMercurio(parseFloat(e.target.value))} step="0.001" placeholder="Ingrese el valor" className="form-control"
-                        />
+                        <input type="number" value={valorMercurio} onChange={(e) => setValorMercurio(parseFloat(e.target.value))} placeholder="Ingrese el valor" className="form-control"/>
                     </div>
                     <div className="col-md-6 mt-3">
                         <label><b>Plomo</b>:</label>
-                        <input type="number" value={valorPlomo} onChange={(e) => setValorPlomo(parseFloat(e.target.value))} step="0.001" placeholder="Ingrese el valor" className="form-control"
-                        />
+                        <input type="number" value={valorPlomo} onChange={(e) => setValorPlomo(parseFloat(e.target.value))} placeholder="Ingrese el valor" className="form-control"/>
                     </div>
                 </div>
                 <button type="submit" className="btn btn-primary">Evaluar Prueba</button>
@@ -99,39 +93,33 @@ const Filtro = () => {
                 <thead className='table-primary'>
                     <tr>
                         <th>Elemento</th>
-                        <th>Valor Ingresado</th>
-                        <th>Valor Filtrado</th>
-                        <th>Estado</th>
+                        <th>Valor que ingresa</th>
+                        <th>Valor que sale</th>
                     </tr>
                 </thead>
-                <tbody>
                     {prueba.length > 0 ? (
                         prueba.map((test, i) => (
-                            <React.Fragment key={i}>
+                            <tbody key={i}>
                                 {test.map((elemento, j) => (
                                     <tr key={j}>
                                         <td>{elemento.elemento}</td>
                                         <td>{elemento.valorIngresado}</td>
                                         <td>{elemento.valorFiltrado}</td>
-                                        <td>{elemento.fueraDeRango ? 'No está en el rango ideal' : 'Está en el rango ideal'}</td>
                                     </tr>
                                 ))}
                                 <tr>
-                                    <td colSpan="3" className="text-center font-weight-bold">
-                                        Resultado:
-                                    </td>
-                                    <td className='bg-secondary text-white fs-5'>
-                                        <b>{test.some((el) => el.fueraDeRango) ? 'No Potable' : 'Potable'}</b>
+                                    <td colSpan="2" className="text-end px-5 font-weight-bold">El agua es:</td>
+                                    <td className="bg-secondary text-white fs-5">
+                                        <b>Potable</b>
                                     </td>
                                 </tr>
-                            </React.Fragment>
+                            </tbody>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="4" className="text-center">No hay pruebas registradas</td>
+                            <td colSpan="3" className="text-center text-dark">No hay pruebas registradas</td>
                         </tr>
                     )}
-                </tbody>
             </table>
         </div>
     )
